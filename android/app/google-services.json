@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "917749542396",
+    "firebase_url": "https://udemyclone-9d468.firebaseio.com",
+    "project_id": "udemyclone-9d468",
+    "storage_bucket": "udemyclone-9d468.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917749542396:android:f16c11edbd972de25b1679",
+        "android_client_info": {
+          "package_name": "com.esvisoftech.udemyclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917749542396-plde5onf3tf94tfujjctinv6hpi7ncto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esvisoftech.udemyclone",
+            "certificate_hash": "bd94bed5b2740d16e0fb26345061f9f9e1b456dd"
+          }
+        },
+        {
+          "client_id": "917749542396-9u4nf1sungu8krfou0qhbb4s2dqv273t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRCKREUSKMQDxfbrktuIk4Scai_FDNrp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917749542396-9u4nf1sungu8krfou0qhbb4s2dqv273t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
