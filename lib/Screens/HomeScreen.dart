@@ -38,18 +38,19 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.grey.shade900,
         selectedIconTheme: IconThemeData(color: Colors.redAccent),
         iconSize: 26.0,
-        selectedFontSize: 15.0,
-        unselectedFontSize: 12.0,
+        selectedFontSize: 12.0,
+        unselectedFontSize: 10.0,
+        unselectedItemColor: Colors.white,
         currentIndex: currentIndex,
         unselectedIconTheme: IconThemeData(color: Colors.white),
-        unselectedLabelStyle: TextStyle(color: Colors.white),
+        unselectedLabelStyle: TextStyle(color: Colors.white12),
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.star_border), label: "Featured"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.play_circle_fill), label: "MyCourses"),
+              icon: Icon(Icons.play_circle_fill), label: "My courses"),
           BottomNavigationBarItem(
               icon: Icon(EvaIcons.heartOutline), label: "Whishlist"),
           BottomNavigationBarItem(

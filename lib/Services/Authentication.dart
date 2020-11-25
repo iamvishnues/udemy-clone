@@ -25,4 +25,9 @@ class Authentication {
     assert(currentuser.uid == user.uid);
     return 'Error occured';
   }
+
+  Future<String> googleSignout() async {
+    _googleSignIn.signOut();
+    return "Error Out";
+  }
 }

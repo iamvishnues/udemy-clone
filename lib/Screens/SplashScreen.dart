@@ -31,19 +31,19 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Expanded(
-              //     flex: 4,
-              //     child: SizedBox(
-              //         height: 300, child: Image.asset("images/logo.png"))),
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 18.0),
-              //   child: Expanded(
-              //     flex: 1,
-              //     child: Align(
-              //         alignment: FractionalOffset.bottomCenter,
-              //         child: CircularProgressIndicator()),
-              //   ),
-              // ),
+              Expanded(
+                  flex: 4,
+                  child: SizedBox(
+                      height: 300, child: Image.asset("images/logo.png"))),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 18.0),
+                child: Expanded(
+                  flex: 1,
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: CircularProgressIndicator()),
+                ),
+              ),
             ],
           ),
         ),

@@ -17,94 +17,157 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Sign in"),
-              FlatButton.icon(
-                onPressed: () {},
-                color: Colors.white,
-                icon: Icon(EvaIcons.email),
-                label: Text("Signin with email"),
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 180,
-                    child: Divider(
-                      thickness: 1,
-                      color: Colors.white,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 50,
+                    bottom: 50,
+                  ),
+                  child: Text("Sign in",
+                      style: TextStyle(color: Colors.white, fontSize: 25)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: FlatButton.icon(
+                    onPressed: () {},
+                    color: Colors.white,
+                    minWidth: 270,
+                    height: 50,
+                    icon: Icon(Icons.mail_outline),
+                    label: Text(
+                      "Signin with email",
                     ),
                   ),
-                  Text("or"),
-                  SizedBox(
-                    width: 180,
-                    child: Divider(
-                      thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 28.0, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Divider(
+                          thickness: 1,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child:
+                            Text("or", style: TextStyle(color: Colors.white)),
+                      ),
+                      SizedBox(
+                        width: 120,
+                        child: Divider(
+                          thickness: 1,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: FlatButton.icon(
+                      minWidth: 270,
+                      height: 50,
                       color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: FlatButton.icon(
-                    color: Colors.white,
-                    onPressed: () async {
-                      await authentication.googleSignIn().whenComplete(() {
-                        Navigator.pushReplacement(
-                            context,
-                            PageTransition(
-                                child: HomeScreen(),
-                                type: PageTransitionType.rightToLeftWithFade));
-                      });
-                    },
-                    icon: Icon(EvaIcons.google),
-                    label: Text("Signin with Google")),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: FlatButton.icon(
-                    color: Colors.white,
-                    onPressed: () {},
-                    icon: Icon(EvaIcons.facebook),
-                    label: Text("Signin with Facebook")),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: FlatButton.icon(
-                    color: Colors.white,
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.apple),
-                    label: Text("Signin with Apple")),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("New here ?"),
-                  MaterialButton(
-                      child: Text("SignUp"),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            PageTransition(
-                                child: SignUp(),
-                                type: PageTransitionType.bottomToTop));
-                      })
-                ],
-              )
-            ],
+                      onPressed: () async {
+                        await authentication.googleSignIn().whenComplete(() {
+                          Navigator.pushReplacement(
+                              context,
+                              PageTransition(
+                                  child: HomeScreen(),
+                                  type:
+                                      PageTransitionType.rightToLeftWithFade));
+                        });
+                      },
+                      icon: Icon(EvaIcons.google),
+                      label: Text("Signin with Google")),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: FlatButton.icon(
+                      minWidth: 270,
+                      height: 50,
+                      color: Colors.white,
+                      onPressed: () {},
+                      icon: Icon(EvaIcons.facebook),
+                      label: Text("Signin with Facebook")),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: FlatButton.icon(
+                      minWidth: 270,
+                      height: 50,
+                      color: Colors.white,
+                      onPressed: () {},
+                      icon: Icon(FontAwesomeIcons.apple),
+                      label: Text("Signin with Apple")),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("New here ?", style: TextStyle(color: Colors.white)),
+                    MaterialButton(
+                        child: Text("Signup",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400)),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              PageTransition(
+                                  child: SignUp(),
+                                  type: PageTransitionType.bottomToTop));
+                        }),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    left: 28.0,
+                    right: 28.0,
+                  ),
+                  child: Text(
+                    "By using our services you are agreeing to our terms & ",
+                    style: TextStyle(color: Colors.white, fontSize: 11),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 28.0,
+                    right: 28.0,
+                  ),
+                  child: Text(
+                    " conditions and privacy statement",
+                    style: TextStyle(color: Colors.white, fontSize: 11),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images/landingPageBg.png"),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomLeft,
+                  colors: [Color(0xFF791E57), Color(0xFFE0495A)]),
+              image: DecorationImage(
+                image: AssetImage(
+                  "images/udemy.png",
+                ),
                 fit: BoxFit.fitHeight,
-                colorFilter:
-                    ColorFilter.mode(Colors.black54, BlendMode.darken))),
+                // colorFilter:
+                //     ColorFilter.mode(Colors.black54, BlendMode.darken)
+              )),
+        ),
       ),
     );
   }
