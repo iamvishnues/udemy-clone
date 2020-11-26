@@ -73,13 +73,54 @@ class _FeaturedState extends State<Featured> {
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
-            // SizedBox(height: 300,width: 400,
-            // child: GetBuilder<DataController>(
-            //   builder: (value){
-            //     return FutureBuilder(builder: ,future: Value.getData('top'),);
-            //   },
-            // ),
-            // )
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: GetBuilder<DataController>(
+                init: DataController(),
+                builder: (value) {
+                  return FutureBuilder(
+                    future: value.getData('featured'),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.black,
+                          ),
+                        );
+                      } else {
+                        return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              fit: BoxFit.contain,
+                                              image: NetworkImage(snapshot
+                                                  .data[index]
+                                                  .data()['image']))),
+                                    ),
+                                    Container(),
+                                    Text(
+                                      snapshot.data[index].data()['title'],
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                      }
+                    },
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),

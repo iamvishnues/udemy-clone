@@ -5,6 +5,9 @@ class DataController extends GetxController {
   Future getData(String collection) async {
     QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection(collection).get();
+    //Data from firbase
+    // print("<>>><<><<>><<<><<><<<<<>><>><<>");
+    // print(snapshot.docs[0].data()['image']);
     return snapshot.docs;
   }
 
