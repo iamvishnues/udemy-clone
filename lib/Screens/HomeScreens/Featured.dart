@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:udemyclone/Screens/DetailSection/DetailScreen.dart';
 import 'package:udemyclone/Screens/MyList.dart';
 import 'package:udemyclone/Services/DataController.dart';
 
@@ -59,7 +60,7 @@ class _FeaturedState extends State<Featured> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: AssetImage("images/salesbg.jpg"),
+                      image: AssetImage("images/banner.jpg"),
                       fit: BoxFit.cover),
                 )),
             Padding(
@@ -124,181 +125,195 @@ class _FeaturedState extends State<Featured> {
                             scrollDirection: Axis.horizontal,
                             itemCount: snapshot.data.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 12),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 100,
-                                        width: 180,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                fit: BoxFit.contain,
-                                                image: NetworkImage(snapshot
-                                                    .data[index]
-                                                    .data()['image']))),
-                                      ),
-                                      Container(
-                                        constraints:
-                                            BoxConstraints(maxWidth: 180),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: snapshot.data[index]
-                                                      .data()['title']
-                                                      .length <
-                                                  47
-                                              ? Text(
-                                                  snapshot.data[index]
-                                                          .data()['title']
-                                                          .substring(0, 40) +
-                                                      "...",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                )
-                                              : Text(
-                                                  snapshot.data[index]
-                                                          .data()['title']
-                                                          .substring(0, 42) +
-                                                      "...",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                          // Text(
-                                          //     snapshot.data[index]
-                                          //             .data()['title']
-                                          //             .substring(0, 48) +
-                                          //         "...",
-                                          //     style:
-                                          //         TextStyle(color: Colors.white),
-                                          //   ),
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.to(DetailedScreen(),
+                                      transition:
+                                          Transition.leftToRightWithFade,
+                                      arguments: snapshot.data[index]);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 12),
+                                  child: Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 100,
+                                          width: 180,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.contain,
+                                                  image: NetworkImage(snapshot
+                                                      .data[index]
+                                                      .data()['image']))),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, bottom: 8.0),
-                                        child: Text(
-                                          snapshot.data[index].data()['author'],
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 13),
+                                        Container(
+                                          constraints:
+                                              BoxConstraints(maxWidth: 180),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 10.0),
+                                            child: snapshot.data[index]
+                                                        .data()['title']
+                                                        .length <
+                                                    47
+                                                ? Text(
+                                                    snapshot.data[index]
+                                                            .data()['title']
+                                                            .substring(0, 40) +
+                                                        "...",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )
+                                                : Text(
+                                                    snapshot.data[index]
+                                                            .data()['title']
+                                                            .substring(0, 42) +
+                                                        "...",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                            // Text(
+                                            //     snapshot.data[index]
+                                            //             .data()['title']
+                                            //             .substring(0, 48) +
+                                            //         "...",
+                                            //     style:
+                                            //         TextStyle(color: Colors.white),
+                                            //   ),
+                                          ),
                                         ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 16,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 16,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 16,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 16,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 16,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          Text(
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, bottom: 8.0),
+                                          child: Text(
                                             snapshot.data[index]
-                                                .data()['ratings'],
+                                                .data()['author'],
                                             style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 13),
                                           ),
-                                          Text(
-                                            ('(${snapshot.data[index].data()['enrolled']})'),
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            snapshot.data[index]
-                                                .data()['price'],
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                          SizedBox(
-                                            width: 20,
-                                          ),
-                                          Text(
-                                            snapshot.data[index]
-                                                .data()['notPrice'],
-                                            style: TextStyle(
-                                                color: Colors.white70,
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                                fontSize: 12),
-                                          ),
-                                        ],
-                                      ),
-                                      snapshot.data[index].data()['tag'] ==
-                                              "Bestseller"
-                                          ? Container(
-                                              height: 25,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                  color: Colors
-                                                      .orangeAccent.shade100,
-                                                  borderRadius:
-                                                      BorderRadius.circular(3)),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 3.0,
-                                                    left: 3.0,
-                                                    right: 3.0),
-                                                child: Text(
-                                                  snapshot.data[index]
-                                                      .data()['tag'],
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              EvaIcons.star,
+                                              size: 16,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              size: 16,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              size: 16,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              size: 16,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              size: 16,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            Text(
+                                              snapshot.data[index]
+                                                  .data()['ratings'],
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 13),
+                                            ),
+                                            Text(
+                                              ('(${snapshot.data[index].data()['enrolled']})'),
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              snapshot.data[index]
+                                                  .data()['price'],
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15),
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            ),
+                                            Text(
+                                              snapshot.data[index]
+                                                  .data()['notPrice'],
+                                              style: TextStyle(
+                                                  color: Colors.white70,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                  fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                        snapshot.data[index].data()['tag'] ==
+                                                "Bestseller"
+                                            ? Container(
+                                                height: 25,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    color: Colors
+                                                        .orangeAccent.shade100,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 3.0,
+                                                          left: 3.0,
+                                                          right: 3.0),
+                                                  child: Text(
+                                                    snapshot.data[index]
+                                                        .data()['tag'],
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                          : Container(
-                                              height: 25,
-                                              width: 110,
-                                              decoration: BoxDecoration(
-                                                  color: Colors
-                                                      .deepOrange.shade300,
-                                                  borderRadius:
-                                                      BorderRadius.circular(3)),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 3.0,
-                                                    left: 3.0,
-                                                    right: 3.0),
-                                                child: Text(
-                                                  snapshot.data[index]
-                                                      .data()['tag'],
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15),
+                                              )
+                                            : Container(
+                                                height: 25,
+                                                width: 110,
+                                                decoration: BoxDecoration(
+                                                    color: Colors
+                                                        .deepOrange.shade300,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 3.0,
+                                                          left: 3.0,
+                                                          right: 3.0),
+                                                  child: Text(
+                                                    snapshot.data[index]
+                                                        .data()['tag'],
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                    ],
+                                              )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );

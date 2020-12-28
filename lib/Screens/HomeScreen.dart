@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController pageController = PageController();
   int currentIndex = 0;
   FirebaseMessaging _firebaseMessaging;
-  String _message;
+  String _message = "Genrate";
   void onTap(int page) {
     setState(() {
       currentIndex = page;
@@ -26,24 +26,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    _firebaseMessaging.configure(
-        onLaunch: (Map<String, dynamic> message) async {
-      setState(() {
-        _message = message['title'];
-      });
-    }, onResume: (Map<String, dynamic> message) async {
-      setState(() {
-        _message = message['title'];
-      });
-    }, onMessage: (Map<String, dynamic> message) async {
-      setState(() {
-        _message = message['title'];
-      });
-    });
-    _firebaseMessaging.getToken().then((value) {
-      print(value);
-    });
     super.initState();
+    Future.delayed(Duration(seconds: 1), () {
+      _firebaseMessaging.configure(
+          onLaunch: (Map<String, dynamic> message) async {
+        setState(() {
+          _message = message['title'];
+        });
+      }, onResume: (Map<String, dynamic> message) async {
+        setState(() {
+          _message = message['title'];
+        });
+      }, onMessage: (Map<String, dynamic> message) async {
+        setState(() {
+          _message = message['title'];
+        });
+      });
+      _firebaseMessaging.getToken().then((value) {
+        print(value);
+      });
+    });
   }
 
   @override
