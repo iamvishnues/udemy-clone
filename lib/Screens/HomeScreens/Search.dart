@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:udemyclone/Services/DataController.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:udemyclone/Screens/DetailSection/DetailScreen.dart'
+import 'package:udemyclone/Screens/DetailSection/DetailScreen.dart';
 
 class Search extends StatefulWidget {
   @override

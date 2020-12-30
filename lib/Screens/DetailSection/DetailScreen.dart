@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
+import 'package:udemyclone/Services/PaymentGateway.dart';
 import 'package:udemyclone/Services/Videos.dart';
 
 class DetailedScreen extends StatefulWidget {
@@ -278,15 +279,24 @@ class _DetailedScreenState extends State<DetailedScreen> {
                 decoration: BoxDecoration(
                     color: Colors.redAccent,
                     borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: Text(
-                    "Buy Now",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                child: GetBuilder<PaymentGateway>(
+                  init: PaymentGateway(),
+                  builder:(value){
+                   return GestureDetector(
+                      onTap: (){
+                        value.dispatchPayment(2000, 'Vishnu ES', 9145687652, 'esvisoftech@gmail.com', 'GooglePay');
+                      },
+                      child: Center(
+                        child: Text(
+                          "Buy Now",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    );
+                  } ,)
               ),
               SizedBox(
                 height: 10,
