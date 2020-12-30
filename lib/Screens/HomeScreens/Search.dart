@@ -21,27 +21,32 @@ class _SearchState extends State<Search> {
           itemCount: snapshotData.docs.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: (){
-                Get.to(DetailedScreen(),transition: Transition.downToUp,arguments: snapshotData.docs[index]);
+              onTap: () {
+                Get.to(DetailedScreen(),
+                    transition: Transition.downToUp,
+                    arguments: snapshotData.docs[index]);
               },
               child: ListTile(
-                leading:Container(
+                leading: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child:Image.network(snapshotData.docs[index].data()['image']),
+                  child:
+                      Image.network(snapshotData.docs[index].data()['image']),
                 ),
                 title: Text(
                   snapshotData.docs[index].data()['title'],
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.w600),
                 ),
                 subtitle: Text(
                   snapshotData.docs[index].data()['author'],
                   style: TextStyle(
-                      color: Colors.white12, fontWeight: FontWeight.w600),
+                      color: Colors.white54,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12),
                 ),
               ),
             );
@@ -49,14 +54,14 @@ class _SearchState extends State<Search> {
     }
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.clear),
-        onPressed: (){
-          setState(() {
-            isExecuted=false;
-          });
-        },
-      ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.clear),
+          onPressed: () {
+            setState(() {
+              isExecuted = false;
+            });
+          },
+        ),
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -91,11 +96,13 @@ class _SearchState extends State<Search> {
         ),
         body: isExecuted
             ? searchData()
-            : Container(
-                child: Text(
-                  "Search courses",
-                  style: TextStyle(
-                      color: Colors.white12, fontWeight: FontWeight.w600),
+            : Center(
+                child: Container(
+                  child: Text(
+                    "Search courses",
+                    style: TextStyle(
+                        color: Colors.white70, fontWeight: FontWeight.w600),
+                  ),
                 ),
               ));
   }
