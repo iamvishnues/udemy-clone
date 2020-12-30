@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:udemyclone/Screens/HomeScreen.dart';
 import 'package:udemyclone/Screens/landingPage.dart';
+import 'package:udemyclone/Services/Storage.dart';
+
+String finalEmail, finalName;
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,15 +13,22 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final SecureStorage secureStorage = SecureStorage();
   @override
   void initState() {
     super.initState();
+    secureStorage.readSecureData('email').then((value) {
+      finalEmail = value;
+    });
+    secureStorage.readSecureData('name').then((value) {
+      finalName = value;
+    });
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
             context,
             PageTransition(
-                child: LandingPage(),
+                child: finalEmail == null ? LandingPage() : HomeScreen(),
                 type: PageTransitionType.rightToLeftWithFade)));
   }
 

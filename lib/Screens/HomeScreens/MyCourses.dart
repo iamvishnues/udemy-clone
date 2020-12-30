@@ -8,6 +8,8 @@ class MyCourses extends StatefulWidget {
 class _MyCoursesState extends State<MyCourses> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.black,
+    );
   }
 }

@@ -11,6 +11,13 @@ class DataController extends GetxController {
     return snapshot.docs;
   }
 
+  Future queryData(String queryString) async {
+    return FirebaseFirestore.instance
+        .collection('featured')
+        .where('title', isGreaterThanOrEqualTo: queryString)
+        .get();
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit

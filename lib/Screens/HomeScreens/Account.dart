@@ -7,6 +7,9 @@ import 'package:flutter/rendering.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:udemyclone/Screens/landingPage.dart';
 import 'package:udemyclone/Services/Authentication.dart';
+import 'package:udemyclone/Services/Storage.dart';
+
+String finalEmail = "useremail", finalName = "username";
 
 class Account extends StatefulWidget {
   @override
@@ -15,6 +18,20 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   Authentication authentication = Authentication();
+  SecureStorage secureStorage = SecureStorage();
+  @override
+  void initState() {
+    // TODO: implement initState
+    secureStorage.readSecureData('email').then((value) {
+      finalEmail = value;
+      print(finalEmail);
+    });
+    secureStorage.readSecureData('name').then((value) {
+      finalName = value;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +55,7 @@ class _AccountState extends State<Account> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Vishnu",
+                  Text("${finalName}",
                       style: TextStyle(
                           fontSize: 21,
                           fontWeight: FontWeight.w800,
@@ -51,7 +68,7 @@ class _AccountState extends State<Account> {
                         width: 5,
                       ),
                       Text(
-                        "vishnues@gmail.com",
+                        "${finalEmail}",
                         style: TextStyle(
                           color: Colors.grey,
                         ),
@@ -240,6 +257,8 @@ class _AccountState extends State<Account> {
               child: MaterialButton(
                 onPressed: () async {
                   await authentication.googleSignout().whenComplete(() {
+                    secureStorage.deleteSecureData('email');
+                  }).whenComplete(() {
                     Navigator.pushReplacement(
                         context,
                         PageTransition(
